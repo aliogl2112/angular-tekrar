@@ -1,0 +1,50 @@
+<!-- <app-product *ngIf="selectedItem" [product]="selectedItem" (unSelectEvent)="unSelectProduct()"></app-product> -->
+<div *ngIf="!loading && products.length>0;else noProduct">
+    <ng-template [ngTemplateOutlet]="productList1"></ng-template>
+    <!-- <ng-template [ngTemplateOutlet]="productList2"></ng-template> -->
+</div>
+
+<ng-template #productList1>
+    <div *ngFor="let product of products" class="card mb-3">
+        <div class="row">
+            <div class="col-3 py-2">
+                <img src="../../assets/{{product.imgUrl}}" alt="1.jpeg" class="img-fluid rounded-start">
+            </div>
+            <div class="col-9">
+                <div class="card-body h-100 d-flex flex-column">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="cart-text">{{product.description}}</p>
+                    <b class="mt-auto">{{product.price}} TL</b>
+                    <a routerLink="/products/{{product.id}}">
+                        <button (click)="selectedItem=product" class="btn btn-primary align-self-start">İncele</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<div class="spinner-border text-primary" role="status" *ngIf="loading">
+    <span class="sr-only"></span>
+</div>
+
+<!-- <ng-template #productList2>
+    <div class="row">
+        <div *ngFor="let product of products" class="col-3">
+            <div class="card mb-3">
+                <img src="../../assets/{{product.imgUrl}}" alt="1.jpeg" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="cart-text">{{product.description}}</p>
+                    <b class="mt-auto">{{product.price}} TL</b>
+                </div>
+            </div>
+    </div>
+    </div>
+</ng-template> -->
+
+<ng-template #noProduct>
+    <div class="alert alert-warning text-center">
+        <b style="color: #000;">No Products!</b>
+    </div>
+</ng-template>

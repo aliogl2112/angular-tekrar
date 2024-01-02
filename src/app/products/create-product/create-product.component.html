@@ -1,0 +1,80 @@
+<h2 class="mb-3">Product Create</h2>
+<form #form="ngForm" (ngSubmit)="saveProduct(form)">
+    <div *ngIf="error.length>1" class="alert alert-danger text-center">{{error}}</div>
+    <div class="mb-3">
+        <label for="product-name" class="form-label">Name</label>
+        <input [(ngModel)]="model.name" #name="ngModel" type="text" id="product-name" name="product-name" class="form-control" required minlength="5">
+        <div class="text-danger mt-3" *ngIf="name.touched && name.invalid">
+            Geçerli bir isim girin.
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea [(ngModel)]="model.description" #description="ngModel" name="description" id="description" cols="30" rows="10" class="form-control" required minlength="5"></textarea>
+        <div class="text-danger mt-3" *ngIf="description.touched && description.invalid">
+            Bu alan boş bırakılamaz. (En az 5 karakter)
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input [(ngModel)]="model.price" #price="ngModel" type="text" id="price" name="price" class="form-control" required min="0">
+        <div class="text-danger mt-3" *ngIf="price.touched && price.invalid">
+            Geçerli bir fiyat bilgisi girin.
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="product-image" class="form-label">Image</label>
+        <input [(ngModel)]="model.imageUrl" #imgUrl="ngModel" type="text" id="product-image" name="product-image" class="form-control" required >
+        <div class="text-danger mt-3" *ngIf="imgUrl.touched && imgUrl.invalid">
+            Bu alan bış bırakılamaz.
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="category-id" class="form-label">Category ID</label>
+        <select [(ngModel)]="model.categoryId" #category="ngModel" name="category-id" id="category-id" class="form-select" >
+            <option value="0">Kategori</option>
+            <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+        </select>
+    </div>
+    <div class="form-check mb-3 d-flex">
+        <input [(ngModel)]="model.isActive" type="checkbox" id="isActive" name="isActive" class="form-check-input">
+        <label for="isActive" class="form-check-label">isActive?</label>
+    </div>
+    <div class="mb-3">
+        <button [disabled]="form.invalid" type="submit" class="btn btn-success px-5 py-2">Kaydet</button>
+    </div>
+</form>
+
+<!-- <form>
+    <div *ngIf="error.length>1" class="alert alert-danger text-center">{{error}}</div>
+    <div class="mb-3">
+        <label for="product-name" class="form-label">Name</label>
+        <input #name type="text" id="product-name" name="product-name" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea #description name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input #price type="text" id="price" name="price" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="product-image" class="form-label">Image</label>
+        <input #imageUrl type="text" id="product-image" name="product-image" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="category-id" class="form-label">Category ID</label>
+        <select #categoryId name="category-id" id="category-id" class="form-select">
+            <option value="0">Kategori</option>
+            <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+        </select>
+    </div>
+    <div class="form-check mb-3">
+        <input #isActive type="checkbox" id="isActive" name="isActive" class="form-check-input">
+        <label for="isActive" class="form-check-label">isActive?</label>
+    </div>
+    <div class="mb-3">
+        <button type="button" class="btn btn-success px-5 py-2" (click)="saveProduct(name,description,price,imageUrl,categoryId,isActive)">Kaydet</button>
+    </div>
+</form> -->

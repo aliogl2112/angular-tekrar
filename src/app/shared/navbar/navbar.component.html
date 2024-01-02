@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-2">
+    <div class="container">
+            <a href="#" class="navbar-brand">Shop App</a>
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div id="navbarCollapse" class="collapse navbar-collapse">
+                <ul class="navbar-nav mb-2 ms-auto">
+                    <li class="nav-item">
+                        <a routerLink="/" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/products" class="nav-link">Products</a>
+                    </li>
+                    <li *ngIf="isAdmin" class="nav-item">
+                        <a routerLink="/products/create" class="nav-link">Create Product</a>
+                    </li>
+                    <li *ngIf="isAdmin" class="nav-item">
+                        <a routerLink="/categories/create" class="nav-link">Create Category</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mb-2 ms-auto me-auto">
+                    <li *ngIf="!isAuthenticated" class="nav-item">
+                        <a routerLink="/auth" class="nav-link">Login</a>
+                    </li>
+                    <li *ngIf="!isAuthenticated" class="nav-item">
+                        <a routerLink="/auth" class="nav-link">Create Account</a>
+                    </li>
+                    <li *ngIf="isAuthenticated" class="nav-item">
+                        <a routerLink="/" class="nav-link" (click)="logOut()">Logout</a>
+                    </li>
+                </ul>
+            </div>
+    </div>
+</nav>

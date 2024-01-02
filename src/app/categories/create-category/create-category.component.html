@@ -1,0 +1,21 @@
+<h2>Category Create</h2>
+
+<form>
+    <div class="mb-3">
+        <label for="category-name" class="form-label">Name</label>
+        <input #name type="text" id="product-name" name="product-name" class="form-control">
+    </div>
+    
+    <!-- <div class="mb-3">
+        <label for="category-id" class="form-label">Category ID</label>
+        <select #categoryId name="category-id" id="category-id" class="form-select">
+            <option value="0">Kategori</option>
+            <option value="1">Telefon</option>
+            <option value="2">Bilgisayar</option>
+            <option value="3">Televizyon</option>
+        </select>
+    </div> -->
+    <div class="mb-3">
+        <button type="button" class="btn btn-success px-5 py-2" (click)="saveCategory(name)">Kaydet</button>
+    </div>
+</form>
